@@ -47,6 +47,7 @@ Unlike typical AI search implementations, this application:
 - Scales search depth based on query complexity
 - Maintains conversation coherence throughout
 - Shows reasoning process transparently
+- Combines visible reasoning with intelligent search to enhance overall response quality - the model can think through how to best use search results and explain its synthesis process
 
 ## Getting Started
 
