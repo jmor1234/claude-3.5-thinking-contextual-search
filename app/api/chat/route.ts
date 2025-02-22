@@ -119,8 +119,8 @@ If using web search results, add:
 
 <sources>
 [List sources in clean bullet point format]
-- Source 1
-- Source 2
+- Source 1 [website url]
+- Source 2 [website url]
 </sources>
 
 Source Guidelines:
@@ -128,6 +128,7 @@ Source Guidelines:
 - Double-check all citations for accuracy
 - Include only the most relevant sources
 - Use proper formatting for each citation
+- Make sure to include the website url in the citation
 
 IMPORTANT REMINDERS:
 - Your knowledge cutoff is 2024 - current date is ${formatCurrentDateTime()}
@@ -160,10 +161,12 @@ export async function POST(req: Request) {
     experimental_transform: smoothStream(),
     maxSteps: 6,
     toolChoice: 'auto',
-    onStepFinish: ({ toolCalls, toolResults, finishReason, usage }) => {
+    onStepFinish: ({ toolCalls, toolResults, finishReason, usage, text }) => {
       stepCounter++;
       console.log(`\n📊 Step ${stepCounter} Finished:`);
       console.log('🏁 Finish Reason:', finishReason);
+
+      console.log('💬 Model Response:', text);
       
       if (toolCalls && toolCalls.length > 0) {
         console.log('🛠️ Tool Calls:');
