@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Claude Thinking Contextual Search
+
+A Next.js application that enhances Claude 3.5 Sonnet with visible chain-of-thought reasoning and intelligent web search capabilities.
+
+## Why This Exists
+
+While major AI providers have integrated visible reasoning and web search capabilities into their models, Anthropic's Claude lacks these features in their hosted solutions. This application bridges that gap by implementing:
+
+1. **Visible Chain-of-Thought Reasoning**: See Claude's thought process as it works through queries, a capability pioneered by OpenAI's O1/O3 models, popularized through DeepSeek's raw chain-of-thought implementation, and most recently showcased in xAI's Grok 3.
+
+2. **Intelligent Contextual Search**: Seamlessly integrates web search when relevant to the conversation, without requiring manual switching or disrupting the chat flow.
+
+## Key Features
+
+- **Automatic Contextual Search**: No manual search mode switching - the model intelligently determines when web search is beneficial based on conversation context
+- **Agentic Tool Calling**: Leverages Vercel AI SDK's tool calling and maxSteps features to enable iterative, context-aware tool usage where each tool call can inform subsequent actions
+- **Semantic Search Integration**: Uses Exa API's meaning-based search for more relevant results
+- **Continuous Conversation Flow**: Maintains coherent dialogue before, during, and after web searches
+- **Clean UI**: XML parsing separates reasoning, answers, and sources for clear presentation
+
+## Technical Stack
+
+- **Framework**: Next.js 15
+- **UI Components**: Shadcn/UI
+- **AI Integration**: Vercel AI SDK
+- **Search Provider**: Exa API - LLM-native search API that indexes the web by meaning rather than keywords
+- **Deployment**: Vercel
+
+## Search Integration Details
+
+The application leverages Exa API's advanced capabilities:
+
+- **Semantic Search**: Unlike traditional keyword-based search, Exa indexes the entire web based on meaning, enabling more contextually relevant results
+- **LLM-Optimized Results**: Provides highlights and summaries that are directly contextually relevant to queries, reducing context window usage
+- **Efficient Context Management**: Summaries and highlights prevent context window clogging, as the LLM doesn't need to parse entire webpage contents
+- **Intelligent Result Processing**: Returns results that are semantically aligned with query intent, improving response accuracy
+
+## Project Structure
+
+- `app/api/chat/route.ts`: AI and API integrations
+- `app/chat`: Chat UI components, message handling, and conversational interface
+
+## What Makes It Different
+
+Unlike typical AI search implementations, this application:
+- Determines search necessity contextually
+- Scales search depth based on query complexity
+- Maintains conversation coherence throughout
+- Shows reasoning process transparently
 
 ## Getting Started
 
-First, run the development server:
+To run this application locally, you'll need:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env.local` file in the root directory with your API keys:
+   ```env
+   ANTHROPIC_API_KEY=your_anthropic_key_here
+   EXA_API_KEY=your_exa_key_here
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
