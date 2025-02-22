@@ -1,7 +1,7 @@
 // app/chat/_components/chat-input.tsx
 
 import type React from "react"
-import { Send, Trash2, Sparkles } from "lucide-react"
+import { Send, Sparkles, PlusCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import TextareaAutosize from 'react-textarea-autosize'
 import { useEffect, useRef } from "react"
@@ -74,18 +74,21 @@ export function ChatInput({ input, handleInputChange, handleSubmit, isLoading, o
             <Button
               type="button"
               onClick={onClear}
-              size="icon"
+              size="sm"
               variant="ghost"
               className={cn(
-                "rounded-[22px] h-11 w-11",
-                "bg-destructive/5 hover:bg-destructive/8",
+                "rounded-[22px] h-11",
+                "bg-muted/50 hover:bg-muted",
                 "transition-all duration-300",
                 "hover:scale-105 active:scale-95",
                 "shadow-[0_1px_2px_-1px_rgba(0,0,0,0.02)] hover:shadow-[0_2px_4px_-2px_rgba(0,0,0,0.04)]",
+                "flex items-center gap-2",
+                "px-3 sm:px-4"
               )}
             >
-              <Trash2 className="h-4 w-4 text-destructive/60" />
-              <span className="sr-only">Clear chat</span>
+              <PlusCircle className="h-4 w-4 text-muted-foreground/60" />
+              <span className="hidden sm:inline text-sm font-medium text-muted-foreground/70">New / Clear Chat</span>
+              <span className="sr-only sm:hidden">New / Clear Chat</span>
             </Button>
           </motion.div>
         </AnimatePresence>
@@ -203,7 +206,7 @@ export function ChatInput({ input, handleInputChange, handleSubmit, isLoading, o
                 value={input}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
-                placeholder="Type a message... (Press / to focus, Shift+Enter for new line)"
+                placeholder="Message Claude..."
                 className={cn(
                   "w-full py-3.5 px-5 text-base bg-transparent border-0 resize-none",
                   "placeholder:text-muted-foreground/40",
