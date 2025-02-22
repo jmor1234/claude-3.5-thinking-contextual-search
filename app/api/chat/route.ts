@@ -1,7 +1,6 @@
 // app/api/chat/route.ts
 
 import { anthropic } from '@ai-sdk/anthropic';
-import { openai } from '@ai-sdk/openai';
 import { smoothStream, streamText, tool, generateObject } from 'ai';
 import { z } from 'zod';
 import Exa from 'exa-js';
@@ -210,7 +209,7 @@ export async function POST(req: Request) {
           try {
             // Generate contextual queries
             const { object: generatedQueries } = await generateObject({
-              model: openai('gpt-4o'),
+              model: anthropic('claude-3-5-sonnet-latest'),
               schema: queryGenSchema,
               prompt: `Based on the following context, generate exactly ${numberOfQueries} search queries to gather comprehensive information:
 
