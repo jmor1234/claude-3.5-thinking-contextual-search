@@ -1,3 +1,5 @@
+(temporarily putting the model to gpt-4o-mini due to api costs until my next release, DM me on twitter @jmorin35 if you would like access to 3.5 version)
+
 # Claude Thinking Contextual Search
 
 A Next.js application that enhances Claude 3.5 Sonnet with visible chain-of-thought reasoning and intelligent web search capabilities.
